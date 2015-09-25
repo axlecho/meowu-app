@@ -8,4 +8,9 @@ public class BaseResponse {
         this.info = info;
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "info:" + info + " status:" + status;
+    }
 }
