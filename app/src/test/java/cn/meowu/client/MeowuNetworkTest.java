@@ -21,7 +21,7 @@ public class MeowuNetworkTest {
 
     private MeowuNetwork meowu;
     private String testEmail = "axlecho@gmail.com";
-    private String testPass = "!me433978029";
+    private String testPass = "";
     private String API_URL = "http://www.meowu.cn";
 
     private static final String TAG = MeowuNetworkTest.class.getSimpleName();
