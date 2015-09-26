@@ -1,5 +1,7 @@
 package cn.meowu.client.network;
 
+import cn.meowu.client.utils.Tools;
+
 public class BaseResponse {
     public final String info;
     public final int status;
@@ -11,6 +13,12 @@ public class BaseResponse {
 
     @Override
     public String toString() {
-        return "info:" + info + " status:" + status;
+        String log = "";
+        try {
+            log = Tools.getClassFieldInfo(this.getClass(), this);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return log;
     }
 }
