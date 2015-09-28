@@ -1,21 +1,17 @@
 package cn.meowu.client;
 
+import cn.meowu.client.network.MeowuNetwork;
+import cn.meowu.client.network.UserInfoResponse;
+import cn.meowu.client.network.UserResponse;
+import cn.meowu.client.utils.MeowuLog;
+import java.io.IOException;
 import junit.framework.Assert;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowLog;
-
-import java.io.IOException;
-
-import cn.meowu.client.network.BaseResponse;
-import cn.meowu.client.network.UserInfoResponse;
-import cn.meowu.client.network.UserResponse;
-import cn.meowu.client.network.MeowuNetwork;
-import cn.meowu.client.utils.MeowuLog;
 import retrofit.Call;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;

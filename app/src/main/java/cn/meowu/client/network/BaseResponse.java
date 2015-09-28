@@ -15,7 +15,8 @@ public class BaseResponse {
     public String toString() {
         String log = "";
         try {
-            log = Tools.getClassFieldInfo(this.getClass(), this);
+            BaseResponse b = (BaseResponse) this;
+            log = Tools.getClassFieldInfo(this);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }

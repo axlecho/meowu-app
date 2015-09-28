@@ -1,7 +1,5 @@
 package cn.meowu.client.network;
 
-import java.lang.reflect.Field;
-
 import cn.meowu.client.utils.Tools;
 
 /**
@@ -9,7 +7,7 @@ import cn.meowu.client.utils.Tools;
  */
 public class UserInfoResponse extends BaseResponse {
 
-    static class Data {
+    public static class Data {
         public final String name;
         public final String gender;
         public final String age;
@@ -30,7 +28,7 @@ public class UserInfoResponse extends BaseResponse {
         public String toString() {
             String log = "";
             try {
-                log = Tools.getClassFieldInfo(this.getClass(), this);
+                log = Tools.getClassFieldInfo(this);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }

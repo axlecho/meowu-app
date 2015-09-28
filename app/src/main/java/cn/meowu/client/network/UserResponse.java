@@ -3,7 +3,7 @@ package cn.meowu.client.network;
 import cn.meowu.client.utils.Tools;
 
 public class UserResponse extends BaseResponse {
-    static class Data {
+    public static class Data {
         public final int uid;
         public final String uname;
 
@@ -16,7 +16,7 @@ public class UserResponse extends BaseResponse {
         public String toString() {
             String log = "";
             try {
-                log = Tools.getClassFieldInfo(this.getClass(), this);
+                log = Tools.getClassFieldInfo(this);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
@@ -29,9 +29,5 @@ public class UserResponse extends BaseResponse {
     public UserResponse(Data data, String info, int status) {
         super(info, status);
         this.data = data;
-    }
-
-    public String toString() {
-        return super.toString() + "\n" + data.toString();
     }
 }

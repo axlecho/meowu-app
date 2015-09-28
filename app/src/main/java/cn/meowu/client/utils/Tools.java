@@ -12,11 +12,11 @@ public class Tools {
     /**
      * get class field info by reflect
      *
-     * @param o
      * @return the class info
      */
-    public static String getClassFieldInfo(Class c, Object o) throws IllegalAccessException {
-        MeowuLog.d(TAG, c.getSimpleName() + "\n" + o.getClass().getSimpleName());
+    public static String getClassFieldInfo(Object o) throws IllegalAccessException {
+        Class c = o.getClass();
+        MeowuLog.d(TAG, c.getSimpleName());
         String info = "";
         Field[] fields = c.getFields();
         for (Field field : fields) {
