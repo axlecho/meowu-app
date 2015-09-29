@@ -1,5 +1,8 @@
 package cn.meowu.client.utils;
 
+
+import java.lang.reflect.Field;
+
 public class TestObject {
     public static final String TAG = TestObject.class.getSimpleName();
     public int a = 0;
@@ -25,13 +28,19 @@ public class TestObject {
     }
 
     public void action() throws IllegalAccessException {
-        E e = new E();
-        e.action1();
-        e.action2();
-
         TestObject a = this;
+        for (Field f : a.getClass().getFields()) {
+            MeowuLog.d(TAG, f.getName());
+        }
+        MeowuLog.d(TAG,"===============");
         if (this instanceof TestObjectEx) {
             TestObjectEx b = (TestObjectEx) this;
+            for (Field f : b.getClass().getFields()) {
+                MeowuLog.d(TAG, f.getName());
+            }
+            MeowuLog.d(TAG,"===============");
         }
+
+
     }
 }
