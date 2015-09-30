@@ -1,8 +1,10 @@
 package cn.meowu.client;
 
 import cn.meowu.client.network.MeowuNetwork;
+import cn.meowu.client.network.SizeInfoResponse;
 import cn.meowu.client.network.UserInfoResponse;
 import cn.meowu.client.network.UserResponse;
+import cn.meowu.client.network.model.SizeInfo;
 import cn.meowu.client.utils.MeowuLog;
 import java.io.IOException;
 import junit.framework.Assert;
@@ -25,6 +27,7 @@ public class MeowuNetworkTest {
     private String testPass = "123456";
     private String API_URL = "http://www.meowu.cn";
     private int testUid = 311;
+    private int testSizeId = 1210;
     private static final String TAG = MeowuNetworkTest.class.getSimpleName();
 
     @Before
@@ -38,6 +41,8 @@ public class MeowuNetworkTest {
         meowu = retrofit.create(MeowuNetwork.class);
     }
 
+
+    // User
     @Test
     public void testLogin() throws IOException {
         Call<UserResponse> call = meowu.login(testEmail, testPass);
@@ -58,6 +63,16 @@ public class MeowuNetworkTest {
     public void testGetUserInfo() throws IOException {
         Call<UserInfoResponse> call = meowu.getUserInfo(testUid);
         UserInfoResponse result = call.execute().body();
+        Assert.assertEquals(0, result.status);
+        MeowuLog.d(TAG, result.toString());
+    }
+
+
+    // Travel
+    @Test
+    public void testGetSiteInfo() throws IOException {
+        Call<SizeInfoResponse> call = meowu.getSizeInfo(testSizeId);
+        SizeInfoResponse result = call.execute().body();
         Assert.assertEquals(0, result.status);
         MeowuLog.d(TAG, result.toString());
     }

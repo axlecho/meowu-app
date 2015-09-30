@@ -1,11 +1,11 @@
 package cn.meowu.client.network;
 
-import retrofit.Call;
-import retrofit.http.Field;
-import retrofit.http.FormUrlEncoded;
-import retrofit.http.GET;
-import retrofit.http.POST;
-import retrofit.http.Query;
+        import retrofit.Call;
+        import retrofit.http.Field;
+        import retrofit.http.FormUrlEncoded;
+        import retrofit.http.GET;
+        import retrofit.http.POST;
+        import retrofit.http.Query;
 
 public interface MeowuNetwork {
 
@@ -19,4 +19,7 @@ public interface MeowuNetwork {
 
     @GET("/index.php?s=/User/nameCard")
     Call<UserInfoResponse> getUserInfo(@Query("uid") int uid);
+
+    @GET("/index.php?s=/Travel/ajaxGetSiteInfo")
+    Call<SizeInfoResponse> getSizeInfo(@Query("site") int id);
 }
