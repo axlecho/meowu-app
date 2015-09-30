@@ -1,4 +1,4 @@
-package cn.meowu.client.network;
+package cn.meowu.client.network.response;
 
 import cn.meowu.client.utils.Tools;
 

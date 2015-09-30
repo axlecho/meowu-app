@@ -1,5 +1,6 @@
-package cn.meowu.client.network;
+package cn.meowu.client.network.response;
 
+import cn.meowu.client.network.response.BaseResponse;
 import cn.meowu.client.utils.Tools;
 
 public class UserResponse extends BaseResponse {

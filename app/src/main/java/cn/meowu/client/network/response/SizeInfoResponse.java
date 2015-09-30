@@ -1,6 +1,7 @@
-package cn.meowu.client.network;
+package cn.meowu.client.network.response;
 
 import cn.meowu.client.network.model.SizeInfo;
+import cn.meowu.client.network.response.BaseResponse;
 
 public class SizeInfoResponse extends BaseResponse {
 

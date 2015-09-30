@@ -1,12 +1,15 @@
 package cn.meowu.client;
 
 import cn.meowu.client.network.MeowuNetwork;
-import cn.meowu.client.network.SizeInfoResponse;
-import cn.meowu.client.network.UserInfoResponse;
-import cn.meowu.client.network.UserResponse;
-import cn.meowu.client.network.model.SizeInfo;
+import cn.meowu.client.network.response.MessageResponse;
+import cn.meowu.client.network.response.SizeInfoResponse;
+import cn.meowu.client.network.response.UserInfoResponse;
+import cn.meowu.client.network.response.UserResponse;
 import cn.meowu.client.utils.MeowuLog;
+import com.squareup.okhttp.OkHttpClient;
 import java.io.IOException;
+import java.net.CookieManager;
+import java.net.CookiePolicy;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,6 +39,7 @@ public class MeowuNetworkTest {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_URL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(getManageCookieClient())
                 .build();
 
         meowu = retrofit.create(MeowuNetwork.class);
@@ -76,4 +80,26 @@ public class MeowuNetworkTest {
         Assert.assertEquals(0, result.status);
         MeowuLog.d(TAG, result.toString());
     }
+
+    // Message
+    @Test
+    public void testGetMessage() throws IOException {
+        Call<UserResponse> logincall = meowu.login(testEmail, testPass);
+        logincall.execute();
+
+        Call<MessageResponse> call = meowu.getMessage(0, 0, 15);
+        MessageResponse result = call.execute().body();
+        Assert.assertEquals(0, result.status);
+        MeowuLog.d(TAG, result.toString());
+    }
+
+    private OkHttpClient getManageCookieClient() {
+        OkHttpClient client = new OkHttpClient();
+        CookieManager cookieManager = new CookieManager();
+        cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
+        client.setCookieHandler(cookieManager);
+        return client;
+    }
+
+
 }
