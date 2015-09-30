@@ -1,5 +1,6 @@
 package cn.meowu.client.network;
 
+import cn.meowu.client.network.response.BaseResponse;
 import cn.meowu.client.network.response.MessageResponse;
 import cn.meowu.client.network.response.SizeInfoResponse;
 import cn.meowu.client.network.response.UserInfoResponse;
@@ -30,4 +31,8 @@ public interface MeowuNetwork {
     @FormUrlEncoded
     @POST("/index.php?s=/Msg/ajaxGetMsg")
     Call<MessageResponse> getMessage(@Field("type") int type, @Field("page") int page, @Field("pagesize") int pagesize);
+
+    @FormUrlEncoded
+    @POST("/index.php?s=/Msg/ajaxWrite")
+    Call<BaseResponse> sendMessage(@Field("uid") int uid, @Field("content") String content);
 }

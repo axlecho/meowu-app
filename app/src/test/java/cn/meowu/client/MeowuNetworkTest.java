@@ -1,6 +1,7 @@
 package cn.meowu.client;
 
 import cn.meowu.client.network.MeowuNetwork;
+import cn.meowu.client.network.response.BaseResponse;
 import cn.meowu.client.network.response.MessageResponse;
 import cn.meowu.client.network.response.SizeInfoResponse;
 import cn.meowu.client.network.response.UserInfoResponse;
@@ -45,7 +46,6 @@ public class MeowuNetworkTest {
         meowu = retrofit.create(MeowuNetwork.class);
     }
 
-
     // User
     @Test
     public void testLogin() throws IOException {
@@ -71,7 +71,6 @@ public class MeowuNetworkTest {
         MeowuLog.d(TAG, result.toString());
     }
 
-
     // Travel
     @Test
     public void testGetSiteInfo() throws IOException {
@@ -84,11 +83,22 @@ public class MeowuNetworkTest {
     // Message
     @Test
     public void testGetMessage() throws IOException {
-        Call<UserResponse> logincall = meowu.login("axlecho@gmail.com", "!me433978029");
+        Call<UserResponse> logincall = meowu.login(testEmail, testPass);
         logincall.execute();
 
         Call<MessageResponse> call = meowu.getMessage(4, 0, 15);
         MessageResponse result = call.execute().body();
+        Assert.assertEquals(0, result.status);
+        MeowuLog.d(TAG, result.toString());
+    }
+
+    @Test
+    public void testSendMessage() throws IOException {
+        Call<UserResponse> logincall = meowu.login(testEmail, testPass);
+        logincall.execute();
+
+        Call<BaseResponse> call = meowu.sendMessage(311, "hello222");
+        BaseResponse result = call.execute().body();
         Assert.assertEquals(0, result.status);
         MeowuLog.d(TAG, result.toString());
     }
@@ -100,6 +110,4 @@ public class MeowuNetworkTest {
         client.setCookieHandler(cookieManager);
         return client;
     }
-
-
 }
