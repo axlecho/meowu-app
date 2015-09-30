@@ -3,6 +3,7 @@ package cn.meowu.client.network;
 import cn.meowu.client.network.response.BaseResponse;
 import cn.meowu.client.network.response.MessageResponse;
 import cn.meowu.client.network.response.SizeInfoResponse;
+import cn.meowu.client.network.response.TeamInfoResponse;
 import cn.meowu.client.network.response.UserInfoResponse;
 import cn.meowu.client.network.response.UserResponse;
 import retrofit.Call;
@@ -30,9 +31,13 @@ public interface MeowuNetwork {
 
     @FormUrlEncoded
     @POST("/index.php?s=/Msg/ajaxGetMsg")
-    Call<MessageResponse> getMessage(@Field("type") int type, @Field("page") int page, @Field("pagesize") int pagesize);
+    Call<MessageResponse> getMessage(@Field("type") int type, @Field("page") Integer page, @Field("pagesize") Integer pagesize);
 
     @FormUrlEncoded
     @POST("/index.php?s=/Msg/ajaxWrite")
     Call<BaseResponse> sendMessage(@Field("uid") int uid, @Field("content") String content);
+
+    @FormUrlEncoded
+    @POST("/index.php?s=/Travel/ajaxFindTeams")
+    Call<TeamInfoResponse> findTeams(@Field("go") String go, @Field("from") String from, @Field("page") Integer page, @Field("pagesize") Integer pagesize);
 }

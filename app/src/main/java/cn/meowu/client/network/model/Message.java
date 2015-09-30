@@ -1,6 +1,6 @@
 package cn.meowu.client.network.model;
 
-public class Message extends ModelBase {
+public class Message extends BaseModel {
     public final int id;
     public final int uid;
     public final int authorid;

@@ -1,6 +1,6 @@
 package cn.meowu.client.network.model;
 
-public class UserInfo extends ModelBase{
+public class UserInfo extends BaseModel {
     public final String name;
     public final String gender;
     public final String age;

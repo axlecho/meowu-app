@@ -24,17 +24,16 @@ public class Tools {
             Object value = field.get(o);
 
             if (value.getClass().isArray()) {
-                info += "\n\n[";
                 Object[] arr = (Object[]) value;
                 for (Object a : arr) {
                     info += getClassFieldInfo(a);
-                    info += "\n";
+                    info += " ";
                 }
-                info += "]\n\n";
             } else {
                 info += key + ":" + value + " ";
             }
         }
+
         return info;
     }
 }

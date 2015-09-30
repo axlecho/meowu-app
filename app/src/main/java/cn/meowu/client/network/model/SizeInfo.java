@@ -1,6 +1,6 @@
 package cn.meowu.client.network.model;
 
-public class SizeInfo extends ModelBase {
+public class SizeInfo extends BaseModel {
     public final int id;
     public final String name;
     public final String reid;

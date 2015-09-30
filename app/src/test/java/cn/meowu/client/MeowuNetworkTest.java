@@ -4,6 +4,7 @@ import cn.meowu.client.network.MeowuNetwork;
 import cn.meowu.client.network.response.BaseResponse;
 import cn.meowu.client.network.response.MessageResponse;
 import cn.meowu.client.network.response.SizeInfoResponse;
+import cn.meowu.client.network.response.TeamInfoResponse;
 import cn.meowu.client.network.response.UserInfoResponse;
 import cn.meowu.client.network.response.UserResponse;
 import cn.meowu.client.utils.MeowuLog;
@@ -76,6 +77,14 @@ public class MeowuNetworkTest {
     public void testGetSiteInfo() throws IOException {
         Call<SizeInfoResponse> call = meowu.getSizeInfo(testSizeId);
         SizeInfoResponse result = call.execute().body();
+        Assert.assertEquals(0, result.status);
+        MeowuLog.d(TAG, result.toString());
+    }
+
+    @Test
+    public void testFindTeams() throws IOException {
+        Call<TeamInfoResponse> call = meowu.findTeams(null, null, null, null);
+        TeamInfoResponse result = call.execute().body();
         Assert.assertEquals(0, result.status);
         MeowuLog.d(TAG, result.toString());
     }

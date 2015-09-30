@@ -2,7 +2,7 @@ package cn.meowu.client.network.model;
 
 import cn.meowu.client.utils.Tools;
 
-public class ModelBase {
+public class BaseModel {
     @Override
     public String toString() {
         String log = "";
