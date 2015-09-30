@@ -16,11 +16,24 @@ public class Tools {
      */
     public static String getClassFieldInfo(Object o) throws IllegalAccessException {
         Class c = o.getClass();
-        MeowuLog.d(TAG, c.getSimpleName());
+//        MeowuLog.d(TAG, c.getSimpleName());
         String info = "";
         Field[] fields = c.getFields();
         for (Field field : fields) {
-            info += field.getName() + ":" + field.get(o) + " ";
+            String key = field.getName();
+            Object value = field.get(o);
+
+            if (value.getClass().isArray()) {
+                info += "\n\n[";
+                Object[] arr = (Object[]) value;
+                for (Object a : arr) {
+                    info += getClassFieldInfo(a);
+                    info += "\n";
+                }
+                info += "]\n\n";
+            } else {
+                info += key + ":" + value + " ";
+            }
         }
         return info;
     }

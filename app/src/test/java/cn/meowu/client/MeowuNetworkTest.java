@@ -84,10 +84,10 @@ public class MeowuNetworkTest {
     // Message
     @Test
     public void testGetMessage() throws IOException {
-        Call<UserResponse> logincall = meowu.login(testEmail, testPass);
+        Call<UserResponse> logincall = meowu.login("axlecho@gmail.com", "!me433978029");
         logincall.execute();
 
-        Call<MessageResponse> call = meowu.getMessage(0, 0, 15);
+        Call<MessageResponse> call = meowu.getMessage(4, 0, 15);
         MessageResponse result = call.execute().body();
         Assert.assertEquals(0, result.status);
         MeowuLog.d(TAG, result.toString());
